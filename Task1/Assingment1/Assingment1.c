@@ -3,9 +3,10 @@
 
 void main(void){
 	//define int to store the height of the pyramid
-	int Height;
-	printf("Enter heigth of the pyramid: ");
-	scanf("%d",&Height);
+	int Height=6;
+	// uncomment to enter any wanted height
+	// printf("Enter heigth of the pyramid: ");
+	// scanf("%d",&Height);
 	for (int i=0;i<Height;i++){
 		//loop to add spaces at each level
 		for(int j=Height-i-1;j>0;j--){
