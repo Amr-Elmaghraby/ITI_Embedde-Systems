@@ -1,0 +1,27 @@
+In Windows Command Prompt (cmd), there is no direct equivalent to the `source` command as used in Unix-like shells (e.g., bash). In Unix-like shells, the `source` command is used to execute commands from a script file in the current shell environment, allowing you to set environment variables or define functions that persist after the script finishes executing.
+
+However, in Windows Command Prompt, you can achieve a similar effect by using a batch script (a .bat file) to set environment variables and modify the `PATH` variable. Batch scripts allow you to run a series of commands as if you were typing them in the Command Prompt manually.
+
+Here's how you can create a batch script to set your desired paths:
+
+1. Open a text editor (like Notepad) and create a new file.
+
+2. Add the following lines to the file:
+
+```batch
+@echo off
+set "PATH=%PATH%;E:\ITI ES Basics\Softwares\mingw32\bin"
+```
+
+3. Save the file with a .bat extension, for example, `myscript.bat`. The .bat extension indicates that it is a batch script.
+
+4. To use the script, you have two options:
+
+   - Double-click the `myscript.bat` file to execute it. This will open a new Command Prompt window with the updated `PATH` environment variable. However, changes made in the new window won't affect the original Command Prompt window.
+
+   - Run the script from an existing Command Prompt window using the `call` command, which will apply the changes to the current window:
+     ```cmd
+     call myscript.bat
+     ```
+
+Remember that environment variables set in batch scripts will only persist within the scope of the Command Prompt session in which they were run. If you need the changes to persist across multiple sessions, you can use the `setx` command, as explained in my previous responses, to permanently modify the environment variable.

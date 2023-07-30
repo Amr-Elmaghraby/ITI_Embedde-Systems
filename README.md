@@ -1,1 +1,2 @@
-# ITI_Embedde-Systems
+# Embedded-Systems-ITI
+ITI - Information Technology Institute one month training in Embedded System basics 
