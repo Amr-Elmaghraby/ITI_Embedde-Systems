@@ -19,5 +19,5 @@ void main(void){
 		if(i!=Height-1){
 			printf("\n");}
 	}
-	
+	//while(1){fflush(stdout);}
 }
