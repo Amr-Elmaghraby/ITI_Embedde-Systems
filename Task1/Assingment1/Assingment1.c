@@ -16,7 +16,8 @@ void main(void){
 		for(int u=2*i+1;u>0;u--){
 		printf("*");}
 		//add line to end each level
-		printf("\n");
+		if(i!=Height-1){
+			printf("\n");}
 	}
 	
 }
