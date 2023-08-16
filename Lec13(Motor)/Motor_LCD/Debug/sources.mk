@@ -21,8 +21,6 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 App \
-HAL/KPD \
 HAL/LCD \
-HAL/LED_Handler \
 MCAL/Driver_DIO_V1 \
 

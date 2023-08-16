@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Aug 13, 2023
- *      Author: Amr Elmaghraby
+ *      Author: Hardware
  */
 
 #include "../LIB/STD_Type.h"
@@ -14,6 +14,7 @@
 
 
 void main(void){
+
 		DIO_VoidSetPinDirection(DIO_PORTC,DIO_PIN0,OUTPUT);
 		DIO_VoidSetPinDirection(DIO_PORTC,DIO_PIN1,OUTPUT);
 
@@ -30,40 +31,33 @@ void main(void){
 		while(1){
 			if(DIO_u8GetPinValue(DIO_PORTB,DIO_PIN3)==LOW){
 				DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN0,HIGH);
-				Dir=0;
-			}
-			else{
-				DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN0,LOW);
+				Dir=1;
 			}
 			if(DIO_u8GetPinValue(DIO_PORTB,DIO_PIN4)==LOW){
 				DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN1,HIGH);
-				if(!DIO_u8GetPinValue(DIO_PORTB,DIO_PIN3))
-					Dir=2;
-				else
-					Dir=1;
-			}
-			else{
-				DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN1,LOW);
-			}
-			if(DIO_u8GetPinValue(DIO_PORTB,DIO_PIN3) && DIO_u8GetPinValue(DIO_PORTB,DIO_PIN4)){
-				Dir=2;
+					Dir=Dir+2;
 			}
 
 			if(Dir != Prev_Dir){
 				LCD_VoidClearDisplay();
-				switch(Dir){
-					case 0:
-						LCD_VoidSendData('R');LCD_VoidSendData('i');LCD_VoidSendData('g');LCD_VoidSendData('h');LCD_VoidSendData('t');
-						break;
-					case 1:
-						LCD_VoidSendData('L');LCD_VoidSendData('i');LCD_VoidSendData('f');LCD_VoidSendData('t');
-						break;
-					case 2:
-						LCD_VoidClearDisplay();
-						break;
-					}
+			switch(Dir){
+				case 1:
+					DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN1,LOW);
+					LCD_VoidSendData('R');LCD_VoidSendData('i');LCD_VoidSendData('g');LCD_VoidSendData('h');LCD_VoidSendData('t');
+					break;
+				case 2:
+					DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN0,LOW);
+					LCD_VoidSendData('L');LCD_VoidSendData('i');LCD_VoidSendData('f');LCD_VoidSendData('t');
+					break;
+				default:
+					DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN1,LOW);
+					DIO_VoidSetPinValue(DIO_PORTC,DIO_PIN0,LOW);
+					LCD_VoidSendData('O');LCD_VoidSendData('f');LCD_VoidSendData('f');
+					break;
+				}
 			}
 			Prev_Dir = Dir;
+			Dir=0;
 		}
 }
 

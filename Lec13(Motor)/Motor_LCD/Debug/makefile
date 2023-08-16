@@ -9,9 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include MCAL/Driver_DIO_V1/subdir.mk
--include HAL/LED_Handler/subdir.mk
 -include HAL/LCD/subdir.mk
--include HAL/KPD/subdir.mk
 -include App/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -35,47 +33,47 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-Lec12_LayeredStructure.lss \
+MOTOR_LCD.lss \
 
 FLASH_IMAGE += \
-Lec12_LayeredStructure.hex \
+MOTOR_LCD.hex \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: Lec12_LayeredStructure.elf secondary-outputs
+all: MOTOR_LCD.elf secondary-outputs
 
 # Tool invocations
-Lec12_LayeredStructure.elf: $(OBJS) $(USER_OBJS)
+MOTOR_LCD.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Lec12_LayeredStructure.map -mmcu=atmega32 -o "Lec12_LayeredStructure.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,MOTOR_LCD.map -mmcu=atmega32 -o "MOTOR_LCD.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Lec12_LayeredStructure.lss: Lec12_LayeredStructure.elf
+MOTOR_LCD.lss: MOTOR_LCD.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S Lec12_LayeredStructure.elf  >"Lec12_LayeredStructure.lss"
+	-avr-objdump -h -S MOTOR_LCD.elf  >"MOTOR_LCD.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Lec12_LayeredStructure.hex: Lec12_LayeredStructure.elf
+MOTOR_LCD.hex: MOTOR_LCD.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Lec12_LayeredStructure.elf  "Lec12_LayeredStructure.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex MOTOR_LCD.elf  "MOTOR_LCD.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Lec12_LayeredStructure.elf
+sizedummy: MOTOR_LCD.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 Lec12_LayeredStructure.elf
+	-avr-size --format=avr --mcu=atmega32 MOTOR_LCD.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Lec12_LayeredStructure.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) MOTOR_LCD.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
