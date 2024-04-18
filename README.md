@@ -1,7 +1,7 @@
 
 # ITI AVR-Interfacing-Internship
 
-This is a repository for the AVR interfacing internship, where we explore the creation of AVR drivers for functionalities like TWI, ADC, DIO, TIMER, DAC, and WDT. This repository houses materials and projects completed during the internship, led by instructor ###Mostafa Sabra and assistant ###Lina Mohamed.
+This is a repository for the AVR interfacing internship, where we explore the creation of AVR drivers for functionalities like TWI, ADC, DIO, TIMER, DAC, and WDT. This repository houses materials and projects completed during the internship, led by instructor ### Mostafa Sabra and assistant ### Lina Mohamed.
 
 ## Overview
 
